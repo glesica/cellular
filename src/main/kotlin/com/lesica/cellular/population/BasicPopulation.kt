@@ -4,9 +4,11 @@ import com.lesica.cellular.spatial.Cell
 import com.lesica.cellular.states.AgentState
 
 /**
- * A basic MutablePopulation implementation.
+ * A basic MutablePopulation implementation based on hash maps
+ * to track the correspondence between agent IDs and cells.
  */
 class BasicPopulation<TAgentState: AgentState>: MutablePopulation<TAgentState> {
+
     private val cellToIds = HashMap<Cell, MutableSet<Long>>()
 
     private val idToAgent = HashMap<Long, TAgentState>()

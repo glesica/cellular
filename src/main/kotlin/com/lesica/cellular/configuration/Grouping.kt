@@ -1,5 +1,8 @@
 package com.lesica.cellular.configuration
 
+/**
+ * The method of grouping agent turns.
+ */
 enum class Grouping {
 
     /**

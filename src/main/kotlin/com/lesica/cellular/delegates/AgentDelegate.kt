@@ -4,6 +4,11 @@ import com.lesica.cellular.simulation.AgentController
 import com.lesica.cellular.spatial.Cell
 import com.lesica.cellular.states.AgentState
 
+/**
+ * An agent delegate is responsible for updating agent state
+ * based on various simulation events. This allows behavior
+ * to be isolated for easier testing and re-use.
+ */
 interface AgentDelegate<TAgentState: AgentState> {
     /**
      * Method called on an agent when it is first "born" through
@@ -47,6 +52,8 @@ interface AgentDelegate<TAgentState: AgentState> {
      * includes getters and methods for various aspects of
      * simulation state as well as methods that allow the agent
      * to move, and so on.
+     *
+     * TODO: Rename to `turn`
      */
     fun tick(controller: AgentController<TAgentState>)
 }

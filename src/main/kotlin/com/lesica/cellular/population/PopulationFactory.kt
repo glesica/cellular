@@ -4,5 +4,5 @@ import com.lesica.cellular.states.AgentState
 
 typealias PopulationFactory<TAgentState> = () -> MutablePopulation<TAgentState>
 
-fun <TAgentState: AgentState> defaultPopulationFactory() =
+fun <TAgentState: AgentState> basicPopulationFactory() =
         { BasicPopulation<TAgentState>() }

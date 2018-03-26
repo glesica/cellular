@@ -7,6 +7,7 @@ import com.lesica.cellular.states.AgentState
  * The read-only portion of the population interface.
  */
 interface Population<TAgentState: AgentState> {
+
     /**
      * The cell occupied by the given agent.
      */

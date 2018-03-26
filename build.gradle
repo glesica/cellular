@@ -9,23 +9,15 @@ buildscript {
     }
 }
 
-buildscript {
-    ext.kotlin_version = '1.2.30'
-
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-
 group 'com.lesica.cellular'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
 //apply plugin: 'kotlin2js'
+apply plugin: 'application'
+
+mainClassName = 'com.lesica.cellular.examples.MainKt'
 
 sourceCompatibility = 1.8
 
@@ -38,29 +30,9 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
     testCompile "org.jetbrains.kotlin:kotlin-test-js:$kotlin_version"
     testCompile group: 'junit', name: 'junit', version: '4.12'
-}
-
-compileKotlin {
-    kotlinOptions.jvmTarget = "1.8"
-}
-compileTestKotlin {
-    kotlinOptions.jvmTarget = "1.8"
-}
-group 'com.lesica.cellular'
-version '1.0-SNAPSHOT'
-
-apply plugin: 'java'
-apply plugin: 'kotlin'
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.1.0'
+    testCompile group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.1.0'
+    testRuntime group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.1.0'
 }
 
 compileKotlin {

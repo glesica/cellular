@@ -12,17 +12,30 @@ import com.lesica.cellular.states.AgentStateFactory
 class PopulationGenerator<TAgentState: AgentState>(
         private val cellFactory: CellFactory = defaultCellFactory,
         private val grid: Grid,
-        private val populationFactory: PopulationFactory<TAgentState> = defaultPopulationFactory(),
+        private val populationFactory: PopulationFactory<TAgentState> = basicPopulationFactory(),
         private val randomDouble: () -> Double
 ) {
+
     private val _agentFactories = ArrayList<FactoryContainer>()
 
+    /**
+     * Add an agent factory along with a corresponding weight,
+     * which will determine how likely the factory is to be
+     * used to create any given agent.
+     *
+     * The default weight will lead to a uniform distribution
+     * of factories.
+     */
     fun addAgentFactory(factory: AgentStateFactory<TAgentState>, weight: Double = 1.0)
     {
         _agentFactories.add(FactoryContainer(factory, weight));
         adjustWeights()
     }
 
+    /**
+     * Generate a population using the given agent factories
+     * and weights.
+     */
     fun generate(): MutablePopulation<TAgentState> {
         if (_agentFactories.isEmpty()) {
             throw IllegalStateException("No factories specified")

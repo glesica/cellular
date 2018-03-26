@@ -7,6 +7,7 @@ import com.lesica.cellular.states.AgentState
  * The mutable portion of the population interface.
  */
 interface MutablePopulation<TAgentState: AgentState>: Population<TAgentState> {
+
     /**
      * Create a shallow copy of the population such that agents
      * can be added to or removed from the clone without any

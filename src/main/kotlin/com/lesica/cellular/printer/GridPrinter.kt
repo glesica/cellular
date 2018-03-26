@@ -5,6 +5,11 @@ import com.lesica.cellular.spatial.BasicCell
 import com.lesica.cellular.spatial.Grid
 import com.lesica.cellular.states.AgentState
 
+/**
+ * A simple printer that displays the current grid and prints
+ * the character corresponding to one of the agents in each
+ * cell.
+ */
 class GridPrinter<TAgentState: AgentState>(val grid: Grid): Printer<TAgentState> {
 
     override fun print(tick: Int, population: Population<TAgentState>) {
