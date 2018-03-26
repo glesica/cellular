@@ -10,6 +10,14 @@ import com.lesica.cellular.states.AgentState
  * to be isolated for easier testing and re-use.
  */
 interface AgentDelegate<TAgentState: AgentState> {
+
+    /**
+     * Method to provide a single character representation of
+     * a given agent. Can be used in printers and such to easily
+     * display an agent.
+     */
+    fun agentCharacter(agent: TAgentState): Char
+
     /**
      * Method called on an agent when it is first "born" through
      * cloning or combination. Note that this is not invoked for

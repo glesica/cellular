@@ -5,9 +5,8 @@ import com.lesica.cellular.states.AgentState
 
 /**
  * A simple printer that displays some basic population data
- * on stdout.
  */
-class PopulationPrinter<TAgentState: AgentState>: Printer<TAgentState> {
+class PopulationPrinter<TAgentState : AgentState> : Printer<TAgentState> {
 
     override fun print(tick: Int, population: Population<TAgentState>) {
         println("Tick: $tick")

@@ -2,7 +2,7 @@ package com.lesica.cellular.population
 
 import com.lesica.cellular.spatial.CellFactory
 import com.lesica.cellular.spatial.Grid
-import com.lesica.cellular.spatial.defaultCellFactory
+import com.lesica.cellular.spatial.basicCellFactory
 import com.lesica.cellular.states.AgentState
 import com.lesica.cellular.states.AgentStateFactory
 
@@ -10,7 +10,7 @@ import com.lesica.cellular.states.AgentStateFactory
  * A utility class used to generate random populations.
  */
 class PopulationGenerator<TAgentState: AgentState>(
-        private val cellFactory: CellFactory = defaultCellFactory,
+        private val cellFactory: CellFactory = basicCellFactory,
         private val grid: Grid,
         private val populationFactory: PopulationFactory<TAgentState> = basicPopulationFactory(),
         private val randomDouble: () -> Double

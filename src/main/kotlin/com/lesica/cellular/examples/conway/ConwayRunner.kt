@@ -9,7 +9,7 @@ import com.lesica.cellular.printer.GridPrinter
 import com.lesica.cellular.simulation.Simulation
 import com.lesica.cellular.simulation.SimulationImpl
 import com.lesica.cellular.spatial.BasicGrid
-import com.lesica.cellular.spatial.defaultCellFactory
+import com.lesica.cellular.spatial.basicCellFactory
 import com.lesica.cellular.strategies.BasicMovementStrategy
 import com.lesica.cellular.strategies.BasicSpatialStrategy
 import com.lesica.cellular.strategies.BasicVisibilityStrategy
@@ -25,7 +25,7 @@ public class ConwayRunner {
     init {
         val grid = BasicGrid(gridSize, gridSize);
         val spatialStrategy = BasicSpatialStrategy(
-                cellFactory = defaultCellFactory,
+                cellFactory = basicCellFactory,
                 grid = grid,
                 isPeriodic = false)
 
@@ -37,8 +37,10 @@ public class ConwayRunner {
         generator.addAgentFactory({ ConwayAgentState().dead() })
         val population = generator.generate();
 
+        val agentDelegate = ConwayAgentDelegate()
+
         simulation = SimulationImpl(
-                agentDelegate = ConwayAgentDelegate(),
+                agentDelegate = agentDelegate,
                 cellDelegate = InertCellDelegate(),
                 configuration = StaticConfiguration<ConwayAgentState>(Grouping.Simultaneous),
                 movementStrategy = BasicMovementStrategy(),
@@ -46,7 +48,7 @@ public class ConwayRunner {
                 spatialStrategy = spatialStrategy,
                 visibilityStrategy = BasicVisibilityStrategy()
         )
-        simulation.addPrinter(GridPrinter<ConwayAgentState>(grid), Frequency.Tick);
+        simulation.addPrinter(GridPrinter<ConwayAgentState>(agentDelegate, grid), Frequency.Tick);
     }
 
     fun run(maxNumberOfTicks: Int) {

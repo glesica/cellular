@@ -6,4 +6,4 @@ package com.lesica.cellular.spatial
  */
 typealias CellFactory = (Int, Int) -> Cell
 
-val defaultCellFactory = { column: Int, row: Int -> BasicCell(column, row) }
+val basicCellFactory = { column: Int, row: Int -> BasicCell(column, row) }

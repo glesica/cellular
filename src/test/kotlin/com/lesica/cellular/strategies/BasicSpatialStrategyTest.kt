@@ -21,7 +21,7 @@ internal class BasicSpatialStrategyTest {
 
     fun strategy(isPeriodic: Boolean = false): SpatialStrategy {
         return BasicSpatialStrategy(
-                cellFactory = defaultCellFactory,
+                cellFactory = basicCellFactory,
                 grid = BasicGrid(3, 3),
                 isPeriodic = isPeriodic
         )

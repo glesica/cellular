@@ -1,11 +1,6 @@
 package com.lesica.cellular.states
 
 interface AgentState {
-    /**
-     * A single-character representation of the agent,
-     * useful for output and debugging.
-     */
-    val char: Char
 
     /**
      * An identifier unique to a single logical agent

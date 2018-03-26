@@ -10,6 +10,9 @@ import com.lesica.cellular.states.AgentState
  * or two methods.
  */
 open class InertAgentDelegate<TAgentState: AgentState>: AgentDelegate<TAgentState> {
+
+    override fun agentCharacter(agent: TAgentState) = 'A'
+
     override fun onBorn(agent: TAgentState) = agent
 
     override fun onCloned(agent: TAgentState) = agent

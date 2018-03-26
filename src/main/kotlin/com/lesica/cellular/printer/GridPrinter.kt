@@ -1,5 +1,6 @@
 package com.lesica.cellular.printer
 
+import com.lesica.cellular.delegates.AgentDelegate
 import com.lesica.cellular.population.Population
 import com.lesica.cellular.spatial.BasicCell
 import com.lesica.cellular.spatial.Grid
@@ -10,7 +11,10 @@ import com.lesica.cellular.states.AgentState
  * the character corresponding to one of the agents in each
  * cell.
  */
-class GridPrinter<TAgentState: AgentState>(val grid: Grid): Printer<TAgentState> {
+class GridPrinter<TAgentState : AgentState>(
+        private val agentDelegate: AgentDelegate<TAgentState>,
+        private val grid: Grid
+) : Printer<TAgentState> {
 
     override fun print(tick: Int, population: Population<TAgentState>) {
         for (row in 0 until grid.height) {
@@ -21,7 +25,7 @@ class GridPrinter<TAgentState: AgentState>(val grid: Grid): Printer<TAgentState>
                 if (agent == null) {
                     print(" ")
                 } else {
-                    print(agent.char)
+                    print(agentDelegate.agentCharacter(agent))
                 }
 
                 print(" ")

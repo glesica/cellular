@@ -10,10 +10,10 @@ import org.junit.jupiter.api.TestInstance
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class BasicPopulationTest {
 
-    val agent01 = BasicAgentState('0', 0)
-    val agent02 = BasicAgentState('0', 0)
-    val agent1 = BasicAgentState('1', 1)
-    val agent2 = BasicAgentState('2', 2)
+    val agent01 = BasicAgentState(0)
+    val agent02 = BasicAgentState(0)
+    val agent1 = BasicAgentState(1)
+    val agent2 = BasicAgentState(2)
 
     val cell0 = BasicCell(0, 0)
     val cell1 = BasicCell(0, 1)
