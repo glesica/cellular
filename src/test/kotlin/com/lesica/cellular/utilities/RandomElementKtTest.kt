@@ -12,10 +12,9 @@ internal class RandomElementKtTest {
     inner class RandomElement {
 
         @Test
-        fun `should return null on empty iterable`() {
+        fun `should throw on empty iterable`() {
             val iter = listOf<Any>()
-            val rand = iter.randomElement()
-            assertNull(rand)
+            assertThrows(UnsupportedOperationException::class.java, { iter.randomElement() })
         }
 
         @Test
@@ -32,7 +31,7 @@ internal class RandomElementKtTest {
             val item1 = "item1"
             val iter = listOf(item0, item1)
             val rand = iter.randomElement()
-            assert(iter.contains(rand))
+            assertTrue(iter.contains(rand))
         }
     }
 }
