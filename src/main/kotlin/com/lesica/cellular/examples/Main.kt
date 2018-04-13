@@ -4,5 +4,5 @@ import com.lesica.cellular.examples.conway.ConwayRunner
 
 fun main(args: Array<String>) {
     val runner = ConwayRunner()
-    runner.run(2)
+    runner.run(100)
 }

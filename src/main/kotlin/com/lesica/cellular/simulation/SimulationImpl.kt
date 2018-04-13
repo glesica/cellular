@@ -12,6 +12,7 @@ import com.lesica.cellular.states.AgentState
 import com.lesica.cellular.strategies.MovementStrategy
 import com.lesica.cellular.strategies.SpatialStrategy
 import com.lesica.cellular.strategies.VisibilityStrategy
+import com.lesica.cellular.visualization.Visualization
 
 class SimulationImpl<TAgentState : AgentState>(
         private val agentDelegate: AgentDelegate<TAgentState>,
@@ -27,8 +28,14 @@ class SimulationImpl<TAgentState : AgentState>(
     override var tick = 0
         private set
 
+    private val visualizations = ArrayList<Pair<Frequency, Visualization<TAgentState>>>()
+
     override fun addPrinter(printer: Printer<TAgentState>, frequency: Frequency) {
         printers.add(Pair(frequency, printer))
+    }
+
+    override fun addVisualization(visualization: Visualization<TAgentState>, frequency: Frequency) {
+        visualizations.add(Pair(frequency, visualization))
     }
 
     private fun advanceTick() {
@@ -48,18 +55,21 @@ class SimulationImpl<TAgentState : AgentState>(
     override fun run(shouldContinue: ShouldContinueCallback<TAgentState>) {
         if (tick == 0) {
             print(Frequency.Tick)
+            visualize(Frequency.Tick)
         }
 
         while (shouldContinue(tick, population)) {
             runTick()
             advanceTick()
             print(Frequency.Tick)
+            visualize(Frequency.Tick)
         }
     }
 
     private fun runTick() {
         if (tick == 0) {
             print(Frequency.Turn)
+            visualize(Frequency.Turn)
         }
 
         val nextPopulation = when (configuration.groupingForTick(tick, population)) {
@@ -90,8 +100,15 @@ class SimulationImpl<TAgentState : AgentState>(
                     }
 
                     print(Frequency.Turn, nextPopulation)
+                    visualize(Frequency.Turn, nextPopulation)
                 }
 
         replacePopulation(nextPopulation)
+    }
+
+    private fun visualize(frequency: Frequency, population: Population<TAgentState> = this.population) {
+        visualizations
+                .filter { it.first == frequency }
+                .forEach { it.second.update(tick, population) }
     }
 }

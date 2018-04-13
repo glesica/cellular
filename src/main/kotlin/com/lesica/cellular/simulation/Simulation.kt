@@ -3,6 +3,7 @@ package com.lesica.cellular.simulation
 import com.lesica.cellular.configuration.Frequency
 import com.lesica.cellular.printer.Printer
 import com.lesica.cellular.states.AgentState
+import com.lesica.cellular.visualization.Visualization
 
 interface Simulation<TAgentState: AgentState> {
 
@@ -21,6 +22,12 @@ interface Simulation<TAgentState: AgentState> {
      * frequency.
      */
     fun addPrinter(printer: Printer<TAgentState>, frequency: Frequency)
+
+    /**
+     * Add a visualization to the simulation to be updated with the
+     * given frequency.
+     */
+    fun addVisualization(visualization: Visualization<TAgentState>, frequency: Frequency)
 
     /**
      * Continue to run the simulation as long as the provided callback

@@ -1,0 +1,10 @@
+Instead of copying agents in order to copy a population in simultaneous mode,
+don't just copy the population, build up a stack of operations that need to be
+applied to each agent and then apply them after all agents have had their
+turns.
+
+We need some kind of time travel functionality. The best plan here might be a
+way to snapshot the whole simulation state and then make the visualizations
+accept a snapshot instead of the actual data structures. Writing the snapshots
+to disk would also provide a nice way to save the results of a simulation.
+
